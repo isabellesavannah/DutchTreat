@@ -18,6 +18,7 @@ namespace DutchTreat
         {
             services.AddMvc();
             services.AddControllersWithViews();
+            services.AddRazorPages();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -38,6 +39,7 @@ namespace DutchTreat
 
             app.UseEndpoints(cfg =>
             {
+                cfg.MapRazorPages();
                 cfg.MapControllerRoute("Default",
                     "/{controller}/{action}/{id?}",
                     new { controller = "App", action = "Index" });
