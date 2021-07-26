@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-
+using Microsoft.EntityFrameworkCore;
 
 namespace DutchTreat.Data
 {
@@ -22,7 +22,16 @@ namespace DutchTreat.Data
 
         public IEnumerable<Order> GetAllOrders()
         {
-            return _ctx.Orders.ToList();
+            return _ctx.Orders.Include(o => o.Items).ToList();
+        }
+
+        //----------------------------------------------------Get all products
+        public Order GetOrderById(int id)
+        {
+            return _ctx.Orders
+                .Include(o => o.Items)
+                .Where(o => o.Id == id)
+                .FirstOrDefault();
         }
 
         //----------------------------------------------------Get all products
