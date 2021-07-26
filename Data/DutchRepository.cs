@@ -25,13 +25,19 @@ namespace DutchTreat.Data
             return _ctx.Orders.Include(o => o.Items).ToList();
         }
 
-        //----------------------------------------------------Get all products
+        //----------------------------------------------------Get order by id
         public Order GetOrderById(int id)
         {
             return _ctx.Orders
                 .Include(o => o.Items)
                 .Where(o => o.Id == id)
                 .FirstOrDefault();
+        }
+
+        //----------------------------------------------------Post order
+        public void AddEntity(object model)
+        {
+            _ctx.Add(model);
         }
 
         //----------------------------------------------------Get all products
@@ -50,5 +56,13 @@ namespace DutchTreat.Data
                        .ToList();
         }
 
+        //----------------------------------------------------Save all
+
+        public bool SaveAll()
+        {
+            return _ctx.SaveChanges() > 0;
+        }
+
+        
     }
 }
