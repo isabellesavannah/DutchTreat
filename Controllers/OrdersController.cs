@@ -1,5 +1,4 @@
 ﻿using DutchTreat.Data;
-using DutchTreat.Data.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -10,28 +9,28 @@ using System.Threading.Tasks;
 namespace DutchTreat.Controllers
 {
     [Route("api/[Controller]")]
-    [ApiController]
-    public class ProductsController : Controller
+    public class OrdersController : Controller
     {
         private readonly IDutchRepository _repository;
-        private readonly ILogger<ProductsController> _logger;
-        public ProductsController(IDutchRepository repository, ILogger<ProductsController> logger)
+        private readonly ILogger<OrdersController> _logger;
+        public OrdersController (IDutchRepository repository, ILogger<OrdersController> logger)
         {
+
             _repository = repository;
             _logger = logger;
-        }
 
-        //------------------------------------------Get Product
+        }
+        //-----------------------------------------------Get Orders
         [HttpGet]
-        public ActionResult<IEnumerable<Product>> Get()
+        public IActionResult Get()
         {
             try
             {
-                return Ok(_repository.GetAllProducts());
+                return Ok(_repository.GetAllOrders());
             }
             catch (Exception ex)
             {
-                return BadRequest("Failed to get product");
+                return BadRequest("Failed to get orders");
             }
         }
     }

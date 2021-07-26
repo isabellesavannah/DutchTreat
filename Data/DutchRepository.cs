@@ -18,6 +18,13 @@ namespace DutchTreat.Data
             _ctx = ctx;
         }
 
+        //----------------------------------------------------Get all orders
+
+        public IEnumerable<Order> GetAllOrders()
+        {
+            return _ctx.Orders.ToList();
+        }
+
         //----------------------------------------------------Get all products
         public IEnumerable<Product> GetAllProducts()
         {

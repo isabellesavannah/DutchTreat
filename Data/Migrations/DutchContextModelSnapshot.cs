@@ -40,7 +40,7 @@ namespace DutchTreat.Migrations
                         new
                         {
                             Id = 1,
-                            OrderDate = new DateTime(2021, 7, 21, 19, 10, 47, 830, DateTimeKind.Utc).AddTicks(8083),
+                            OrderDate = new DateTime(2021, 7, 26, 15, 43, 19, 986, DateTimeKind.Utc).AddTicks(7936),
                             OrderNumber = "12345"
                         });
                 });
