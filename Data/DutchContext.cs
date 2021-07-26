@@ -10,26 +10,21 @@ namespace DutchTreat.Data
 {
     public class DutchContext : DbContext
     {
-        
-        public DutchContext(DbContextOptions<DutchContext> options): base(options)
+        private readonly IConfiguration _config;
+        public DutchContext(IConfiguration config)
         {
-
+            _config = config;
         }
         
         public DbSet<Product> Products { get; set; }
         public DbSet<Order> Orders { get; set; }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            base.OnModelCreating(modelBuilder);
+            base.OnConfiguring(optionsBuilder);
 
-            modelBuilder.Entity<Order>()
-                .HasData(new Order()
-                {
-                    Id = 1,
-                    OrderDate = DateTime.UtcNow,
-                    OrderNumber = "12345"
-                });
+            optionsBuilder.UseSqlServer(_config["ConnectionStrings:DutchContextDb"]);
+
         }
 
     }

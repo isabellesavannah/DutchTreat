@@ -29,7 +29,7 @@ namespace DutchTreat
         {
             services.AddDbContext<DutchContext>(cfg => 
             {
-                cfg.UseSqlServer(_config.GetConnectionString("DutchConnectionString"));
+                cfg.UseSqlServer(_config.GetConnectionString("DutchContextDb"));
             });
 
             services.AddTransient<DutchSeeder>();

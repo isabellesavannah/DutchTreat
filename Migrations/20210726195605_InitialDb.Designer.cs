@@ -4,14 +4,16 @@ using DutchTreat.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DutchTreat.Migrations
 {
     [DbContext(typeof(DutchContext))]
-    partial class DutchContextModelSnapshot : ModelSnapshot
+    [Migration("20210726195605_InitialDb")]
+    partial class InitialDb
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -35,14 +37,6 @@ namespace DutchTreat.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Orders");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            OrderDate = new DateTime(2021, 7, 26, 15, 43, 19, 986, DateTimeKind.Utc).AddTicks(7936),
-                            OrderNumber = "12345"
-                        });
                 });
 
             modelBuilder.Entity("DutchTreat.Data.Entities.OrderItem", b =>

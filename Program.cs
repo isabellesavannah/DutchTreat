@@ -8,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using System.IO;
 
 namespace DutchTreat
 {
@@ -61,7 +62,8 @@ namespace DutchTreat
         private static void SetupConfiguration(HostBuilderContext context, IConfigurationBuilder builder)
         {
             builder.Sources.Clear(); // Removing the default configuration options
-            builder.AddJsonFile("config.json", false, true) // System requires a file called config.json
+            builder.SetBasePath(Directory.GetCurrentDirectory())
+                   .AddJsonFile("config.json", false, true) // System requires a file called config.json
                    .AddXmlFile("config.xml", true)
                    .AddEnvironmentVariables();
         }
