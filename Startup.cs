@@ -38,10 +38,12 @@ namespace DutchTreat
 
             services.AddTransient<IMailService, NullMailService>();
             services.AddMvc();
-            services.AddControllersWithViews();
+            services.AddControllersWithViews()
+                .AddRazorRuntimeCompilation()
+                .AddNewtonsoftJson(options => options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore);
             services.AddRazorPages();
             services.AddScoped<IDutchRepository, DutchRepository>();
-            services.AddMvc().AddNewtonsoftJson(options => options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore);
+            
 
         }
 

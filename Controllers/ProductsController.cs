@@ -22,7 +22,7 @@ namespace DutchTreat.Controllers
             _logger = logger;
         }
 
-        //------------------------------------------Get Product
+        //------------------------------------------Get Products
         [HttpGet]
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]

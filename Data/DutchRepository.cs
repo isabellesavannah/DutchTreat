@@ -22,7 +22,9 @@ namespace DutchTreat.Data
 
         public IEnumerable<Order> GetAllOrders()
         {
-            return _ctx.Orders.Include(o => o.Items).ToList();
+            return _ctx.Orders.Include(o => o.Items)
+                              .ThenInclude(i => i.Product)
+                              .ToList();
         }
 
         //----------------------------------------------------Get order by id
@@ -30,6 +32,7 @@ namespace DutchTreat.Data
         {
             return _ctx.Orders
                 .Include(o => o.Items)
+                .ThenInclude(i => i.Product)
                 .Where(o => o.Id == id)
                 .FirstOrDefault();
         }
