@@ -31,7 +31,7 @@ namespace DutchTreat.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest("Failed to get orders");
+                return BadRequest(ex.Message);
             }
         }
 
@@ -48,7 +48,7 @@ namespace DutchTreat.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest("Failed to get order");
+                return BadRequest(ex.Message);
             }
         }
 

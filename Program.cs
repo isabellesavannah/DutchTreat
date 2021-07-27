@@ -40,17 +40,6 @@ namespace DutchTreat
             
         }
 
-        /*private static void SeedDb(IHost host)
-        {
-            var scopeFactory = host.Services.GetService<IServiceScopeFactory>();
-
-            using (var scope = scopeFactory.CreateScope())
-            {
-                var seeder = scope.ServiceProvider.GetService<DutchSeeder>();
-                seeder.SeedAsync().Wait();
-            }
-        }*/
-
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args) // Default configuration is constructed. That includes app configuration, logging, default server and few other settings.
                 .ConfigureAppConfiguration(SetupConfiguration)
