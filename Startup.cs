@@ -13,6 +13,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using System.Reflection;
 
 namespace DutchTreat
 {
@@ -35,15 +36,16 @@ namespace DutchTreat
             });
 
             services.AddTransient<DutchSeeder>();
-
             services.AddTransient<IMailService, NullMailService>();
             services.AddMvc();
             services.AddControllersWithViews()
                 .AddRazorRuntimeCompilation()
                 .AddNewtonsoftJson(options => options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore);
+            
             services.AddRazorPages();
             services.AddScoped<IDutchRepository, DutchRepository>();
-            
+            services.AddAutoMapper(Assembly.GetExecutingAssembly());
+
 
         }
 
