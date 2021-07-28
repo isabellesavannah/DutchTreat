@@ -1,5 +1,6 @@
 ﻿using DutchTreat.Data.Entities;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -13,16 +14,37 @@ namespace DutchTreat.Data
     {
         private readonly DutchContext _ctx;
         private readonly IWebHostEnvironment _env;
+        private readonly UserManager<StoreUser> _userManager;
 
-        public DutchSeeder(DutchContext ctx, IWebHostEnvironment env)
+        public DutchSeeder(DutchContext ctx, IWebHostEnvironment env, UserManager<StoreUser> userManager
+            )
         {
             _ctx = ctx;
             _env = env;
+            _userManager = userManager;
         }
 
-        public void Seed()
+        public async Task SeedAsync()
         {
             _ctx.Database.EnsureCreated();
+
+            StoreUser user = await _userManager.FindByEmailAsync("isabellet.208@gmail.com");
+            if (user == null)
+            {
+                user = new StoreUser()
+                {
+                    FirstName = "Isabelle",
+                    LastName = "Thomas",
+                    Email = "isabellet.208@gmail.com",
+                    UserName = "isabellet.208@gmail.com"
+                };
+
+                var result = await _userManager.CreateAsync(user, "Password.101");
+                if (result != IdentityResult.Success)
+                {
+                    throw new InvalidOperationException("Could not create new user in seeder");
+                }
+            }
 
             if (!_ctx.Products.Any())
             {
@@ -32,18 +54,18 @@ namespace DutchTreat.Data
 
                 _ctx.Products.AddRange(products);
 
-                var order = new Order()
+                var order = _ctx.Orders.Where(o => o.Id == 1).FirstOrDefault();
+                if (order != null)
                 {
-                    OrderDate = DateTime.Today,
-                    OrderNumber = "1000",
-                    Items = new List<OrderItem>()
+                    order.User = user;
+                    order.Items = new List<OrderItem>();
                     {
                         new OrderItem()
                         {
                             Product = products.First(),
                             Quantity = 5,
                             UnitPrice = products.First().Price
-                        }
+                        };
                     }
                 };
 
