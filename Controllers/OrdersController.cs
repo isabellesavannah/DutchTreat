@@ -67,12 +67,7 @@ namespace DutchTreat.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    var newOrder = new Order()
-                    {
-                        OrderDate = model.OrderDate,
-                        OrderNumber = model.OrderNumber,
-                        Id = model.OrderId
-                    };
+                    var newOrder = _mapper.Map<OrderViewModel, Order>(model);
 
                     if (newOrder.OrderDate == DateTime.MinValue)
                     {
@@ -82,14 +77,7 @@ namespace DutchTreat.Controllers
                     _repository.AddEntity(newOrder);
                     if (_repository.SaveAll())
                     {
-                        var vm = new OrderViewModel()
-                        {
-                            OrderId = newOrder.Id,
-                            OrderDate = newOrder.OrderDate,
-                            OrderNumber = newOrder.OrderNumber
-                        };
-
-                        return Created($"/api/orders/{vm.OrderId}", vm);
+                        return Created($"/api/orders/{newOrder.Id}", _mapper.Map<Order, OrderViewModel>(newOrder));
                     }
                 }
                 else
