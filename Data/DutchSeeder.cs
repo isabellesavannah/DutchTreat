@@ -28,18 +28,18 @@ namespace DutchTreat.Data
         {
             _ctx.Database.EnsureCreated();
 
-            StoreUser user = await _userManager.FindByEmailAsync("isabellet.208@gmail.com");
+            StoreUser user = await _userManager.FindByEmailAsync("isabelle.thomas@intimetec.com");
             if (user == null)
             {
                 user = new StoreUser()
                 {
                     FirstName = "Isabelle",
                     LastName = "Thomas",
-                    Email = "isabellet.208@gmail.com",
-                    UserName = "isabellet.208@gmail.com"
+                    Email = "isabelle.thomas@intimetec.com",
+                    UserName = "isabellet.thomas@intimetec.com"
                 };
 
-                var result = await _userManager.CreateAsync(user, "Password.101");
+                var result = await _userManager.CreateAsync(user, "Itt@123456");
                 if (result != IdentityResult.Success)
                 {
                     throw new InvalidOperationException("Could not create new user in seeder");
@@ -66,7 +66,9 @@ namespace DutchTreat.Data
                             Quantity = 5,
                             UnitPrice = products.First().Price
                         };
+                       
                     }
+                    
                 };
 
                 _ctx.Orders.Add(order);

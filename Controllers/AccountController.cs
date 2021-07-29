@@ -40,7 +40,7 @@ namespace DutchTreat.Controllers
             if (ModelState.IsValid)
             {
                 var result = await _signInManager.PasswordSignInAsync(
-                    model.Username,
+                    model.UserName,
                     model.Password,
                     model.RememberMe,
                     false);
