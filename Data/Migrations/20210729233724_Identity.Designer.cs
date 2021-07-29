@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DutchTreat.Migrations
 {
     [DbContext(typeof(DutchContext))]
-    [Migration("20210728152755_Identity")]
+    [Migration("20210729233724_Identity")]
     partial class Identity
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,9 +24,7 @@ namespace DutchTreat.Migrations
             modelBuilder.Entity("DutchTreat.Data.Entities.Order", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("OrderDate")
                         .HasColumnType("datetime2");
@@ -46,8 +44,8 @@ namespace DutchTreat.Migrations
                     b.HasData(
                         new
                         {
-                            Id = 1,
-                            OrderDate = new DateTime(2021, 7, 28, 15, 27, 54, 345, DateTimeKind.Utc).AddTicks(8023),
+                            Id = 0,
+                            OrderDate = new DateTime(2021, 7, 29, 23, 37, 23, 851, DateTimeKind.Utc).AddTicks(8143),
                             OrderNumber = "12345"
                         });
                 });

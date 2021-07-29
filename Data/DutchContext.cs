@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -20,15 +21,21 @@ namespace DutchTreat.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            base.OnModelCreating(modelBuilder);
-
             modelBuilder.Entity<Order>()
-                .HasData(new Order()
-                {
-                    Id = 1,
-                    OrderDate = DateTime.UtcNow,
-                    OrderNumber = "12345"
-                });
+                .Property(a => a.Id).ValueGeneratedNever();
+            
+                 
+
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<Order>()
+                           .HasData(new Order()
+                           {
+                           
+                               OrderDate = DateTime.UtcNow,
+                               OrderNumber = "12345"
+                           });
+
+
         }
 
     }

@@ -68,10 +68,14 @@ namespace DutchTreat.Data
                         };
                        
                     }
-                    
+                    _ctx.Orders.Add(order);
                 };
+                
+                //if (System.Diagnostics.Debugger.IsAttached == false)
+                //    System.Diagnostics.Debugger.Launch();
+                
 
-                _ctx.Orders.Add(order);
+
 
                 _ctx.SaveChanges();
             }
