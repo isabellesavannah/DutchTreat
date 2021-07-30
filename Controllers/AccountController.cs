@@ -22,7 +22,7 @@ namespace DutchTreat.Controllers
             _signInManager = signInManager;
         }
 
-        //----------------------------------------------------------If logged in redirect
+        //-----------------------------------------------------------------If logged in redirect
         public IActionResult Login()
         {
             if (this.User.Identity.IsAuthenticated)
@@ -33,7 +33,7 @@ namespace DutchTreat.Controllers
             return View();
         }
 
-        //----------------------------------------------------------Log in
+        //------------------------------------------------------------------Log in
         [HttpPost]
         public async Task<IActionResult> Login(LoginViewModel model)
         {
@@ -59,6 +59,14 @@ namespace DutchTreat.Controllers
             }
             ModelState.AddModelError("", "Failed to login");
             return View();
+        }
+        //-------------------------------------------------------------------Logout
+
+        [HttpGet]
+        public async Task<IActionResult> Logout()
+        {
+            await _signInManager.SignOutAsync();
+            return RedirectToAction("Index", "App");
         }
     }
 }
