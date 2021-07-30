@@ -22,7 +22,7 @@ namespace DutchTreat.Controllers
             _signInManager = signInManager;
         }
 
-        //----------------------------------------------------------If loged in redirect
+        //----------------------------------------------------------If logged in redirect
         public IActionResult Login()
         {
             if (this.User.Identity.IsAuthenticated)

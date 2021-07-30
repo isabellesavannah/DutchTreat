@@ -36,7 +36,7 @@ namespace DutchTreat.Data
                     FirstName = "Isabelle",
                     LastName = "Thomas",
                     Email = "isabelle.thomas@intimetec.com",
-                    UserName = "isabellet.thomas@intimetec.com"
+                    UserName = "isabelle.thomas@intimetec.com"
                 };
 
                 var result = await _userManager.CreateAsync(user, "Itt@123456");
