@@ -7,5 +7,10 @@
       "Default": "Information",
       "Microsoft": "Warning"
     }
+  },
+  "Tokens": {
+    "Key": ";asdfghjjk;",
+    "Issuer": "http://http://localhost:8000",
+    "Audience": "http://http://localhost:8000"
   }
 }
